@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysium Network | Infuse & Earth</title>
+<style>
+    :root {
+        --bg-dark: #0d1117;
+        --card-bg: #161b22;
+        --accent-blue: #0062cc;
+        --text-white: #ffffff;
+        --text-gray: #8b949e;
+        --nav-bg: rgba(13, 17, 23, 0.95);
+        --glass: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-dark);
+        color: var(--text-white);
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+
+nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10%;
+        height: 80px;
+        background: var(--nav-bg);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        box-sizing: border-box;
+    }
+
+    .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: bold;
+        font-size: 1.15rem;
+        color: var(--text-white);
+        text-decoration: none;
+        white-space: nowrap;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 25px;
+        align-items: center;
+    }
+
+    .nav-links a:not(.store-highlight) {
+        color: var(--text-white);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        position: relative;
+        transition: color 0.3s ease;
+        padding: 0 5px;
+    }
+
+    .nav-links a:not(.store-highlight):hover {
+        color: var(--accent-blue);
+    }
+
+    .nav-links a:not(.store-highlight)::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -6px;
+        left: 0;
+        background-color: var(--accent-blue);
+        transition: width 0.3s ease;
+    }
+
+    .nav-links a:not(.store-highlight):hover::after {
+        width: 100%;
+    }
+
+    .nav-links a.store-highlight {
+        color: #ffffff;
+        background-color: var(--accent-blue);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 10px 22px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        border: none;
+    }
+
+    .nav-links a.store-highlight:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0, 98, 204, 0.4);
+    }
+
+    .nav-links a.store-highlight:active {
+        transform: translateY(0);
+    }
+
+    .hero {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('map.png');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .geopolitics-card {
+        background: var(--glass);
+        backdrop-filter: blur(20px);
+        padding: 60px;
+        border-radius: 24px;
+        max-width: 600px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        animation: fadeInScale 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    .geopolitics-card h1 { 
+        font-size: 3.2rem; 
+        margin-bottom: 20px; 
+        line-height: 1.1; 
+        transition: text-shadow 0.5s ease;
+    }
+
+    .geopolitics-card:hover h1 {
+        text-shadow: 0 0 30px rgba(0, 98, 204, 0.5);
+    }
+
+    .geopolitics-card p {
+        margin-bottom: 20px;
+    }
+
+    .ip-button {
+        background-color: var(--accent-blue);
+        color: white;
+        padding: 16px 32px;
+        border-radius: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        border: none;
+        font-size: 1.1rem;
+        position: relative;
+        overflow: hidden;
+        transition: 0.3s;
+    }
+
+    .ip-button::before {
+        content: '';
+        position: absolute;
+        top: 0; left: -100%;
+        width: 100%; height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: 0.6s;
+    }
+    .ip-button:hover::before { left: 100%; }
+    .ip-button:hover { 
+        transform: translateY(-4px); 
+        box-shadow: 0 10px 20px rgba(0, 98, 204, 0.3); 
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 100px 20px;
+    }
+
+    .feature-big {
+        background: var(--card-bg);
+        border-radius: 20px;
+        overflow: hidden;
+        margin-bottom: 50px;
+        border: 1px solid rgba(255,255,255,0.05);
+        display: block;
+        width: 100%;
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                    box-shadow 0.4s ease, 
+                    border-color 0.4s ease;
+    }
+
+    .feature-big:hover {
+        transform: translateY(-12px) scale(1.01); 
+        box-shadow: 0 20px 40px rgba(0, 98, 204, 0.25);
+        border-color: rgba(0, 98, 204, 0.4);
+    }
+
+    .feature-img {
+        width: 100%;
+        height: 450px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.8s ease;
+    }
+
+    .feature-big:hover .feature-img { transform: scale(1.08); }
+
+    .feature-content {
+        padding: 50px;
+        background: var(--card-bg);
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+
+    .faq-section {
+        background: var(--card-bg);
+        padding: 60px;
+        border-radius: 20px;
+        margin-top: 80px;
+        border: 1px solid rgba(255,255,255,0.05);
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .faq-section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+    
+    .faq-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+    }
+
+    .faq-item h4 { font-size: 1.2rem; margin-bottom: 15px; color: var(--text-white); }
+    .faq-item p { color: var(--text-gray); line-height: 1.6; }
+    @keyframes fadeInScale {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    footer {
+        background: #090c10;
+        padding: 80px 10%;
+        text-align: center;
+        color: var(--text-gray);
+        border-top: 1px solid rgba(255,255,255,0.05);
+    }
+</style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo-area">
+            <img src="logo.png" alt="Elysium Logo" width="32" height="48">
+            <span>LYSIUM NETWORK</span>
+        </a>
+        <div class="nav-links">
+            <a href="rules.html">Rules</a>
+            <a href="infuse.html">Infuse</a>
+            <a href="https://elysium-network.gitbook.io/elysium-network">Geopol</a>
+            <a href="https://discord.gg/vjBADSdt3Q">Discord</a>
+            <a href="elysiumstore.html" class="store-highlight">Store</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="geopolitics-card">
+            <h1>Elysium Network</h1>
+            <p>Infuse, Custom Effects & Abilities. Earth, Politics, Kingdoms, Land Creation and invasion.</p>
+            <button class="ip-button" id="ipButton" onclick="copyIP()">IP: 82.22.145.38</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <p style="text-align: center; color: var(--text-gray); margin-bottom: 60px;">
+            Elysium is a server in which civilization is recreated in Minecraft. Players can create cities and nations on a custom map of the Earth.
+        </p>
+
+        <div class="feature-big">
+            <img src="earth-map.png" class="feature-img" alt="Earth Map">
+            <div class="feature-content">
+                <h2>Custom Earth map</h2>
+                <p>The server uses a custom map you can access online and shows all towns and nations! Players can explore the map as well as create towns and cities with KingdomsX.</p>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="feature-big">
+                <img src="economy.png" class="feature-img" style="height:250px;">
+                <div class="feature-content">
+                    <h3>Economy</h3>
+                    <p>The server uses Vault as its main economy for both Infuse and Earth.</p>
+                </div>
+            </div>
+            <div class="feature-big">
+                <img src="community.png" class="feature-img" style="height:250px;">
+                <div class="feature-content">
+                    <h3>Community</h3>
+                    <p>Engage in geopolitics, roleplay, and converse with members of our community! Join our Discord server and connect with our community!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2 style="margin-bottom: 30px;">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4 style="color: var(--text-white);">How old is this server?</h4>
+                    <p style="color: var(--text-gray);">The server first launched around the end of February - Beginning of March!</p>
+                </div>
+                <div class="faq-item">
+                    <h4 style="color: var(--text-white);">Is the server cracked?</h4>
+                    <p style="color: var(--text-gray);">Yes! The server supports cracked Minecraft accounts!</p>
+                </div>
+                <div class="faq-item">
+                    <h4 style="color: var(--text-white);">What Minecraft version do I need?</h4>
+                    <p style="color: var(--text-gray);">The server runs on Minecraft version 1.21 and above.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 style="color: var(--text-white);">When is GeoPol releasing?</h4>
+                    <p style="color: var(--text-gray);">Beta Testers will be released soon, full server will be released at the end of April.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Elysium Network. Not an official Minecraft product. Not affiliated with Mojang or Microsoft.</p>
+    </footer>
+
+    <script>
+        function copyIP() {
+            const ip = "82.22.145.38";
+            navigator.clipboard.writeText(ip).then(() => {
+                const btn = document.getElementById('ipButton');
+                const originalText = btn.innerText;
+                
+                btn.innerText = "IP Copied!";
+                btn.style.backgroundColor = "#28a745";
+                
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.backgroundColor = "#0062cc";
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+</body>
+</html>

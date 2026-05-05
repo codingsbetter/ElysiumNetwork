@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysium Network | Rules</title>
+    <style>
+        :root {
+            --bg-dark: #0d1117;
+            --card-bg: #161b22;
+            --accent-blue: #0062cc;
+            --text-white: #ffffff;
+            --text-gray: #8b949e;
+            --nav-bg: rgba(13, 17, 23, 0.95);
+            --glass: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 10%;
+                height: 80px;
+                background: var(--nav-bg);
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+                position: fixed;
+                width: 100%;
+                top: 0;
+                left: 0;
+                z-index: 1000;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                box-sizing: border-box;
+            }
+
+            .logo-area {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                font-weight: bold;
+                font-size: 1.15rem;
+                color: var(--text-white);
+                text-decoration: none;
+                white-space: nowrap;
+            }
+
+            .nav-links {
+                display: flex;
+                gap: 25px;
+                align-items: center;
+            }
+
+            .nav-links a:not(.store-highlight) {
+                color: var(--text-white);
+                text-decoration: none;
+                font-size: 0.9rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                position: relative;
+                transition: color 0.3s ease;
+                padding: 0 5px;
+            }
+
+            .nav-links a:not(.store-highlight):hover {
+                color: var(--accent-blue);
+            }
+
+            .nav-links a:not(.store-highlight)::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: -6px;
+                left: 0;
+                background-color: var(--accent-blue);
+                transition: width 0.3s ease;
+            }
+
+            .nav-links a:not(.store-highlight):hover::after {
+                width: 100%;
+            }
+
+            .nav-links a.store-highlight {
+                color: #ffffff;
+                background-color: var(--accent-blue);
+                text-decoration: none;
+                font-size: 0.85rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                padding: 10px 22px;
+                border-radius: 20px;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                border: none;
+            }
+
+            .nav-links a.store-highlight:hover {
+                background-color: #0056b3;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 15px rgba(0, 98, 204, 0.4);
+            }
+
+            .nav-links a.store-highlight:active {
+                transform: translateY(0);
+            }
+
+        .rules-hero {
+            padding-top: 160px;
+            padding-bottom: 60px;
+            text-align: center;
+            background: linear-gradient(rgba(13, 17, 23, 0.8), rgba(13, 17, 23, 0.95)), url('map.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .rules-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        .rules-hero p {
+            color: var(--text-gray);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .rules-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        box-shadow 0.4s ease, 
+                        border-color 0.4s ease;
+        }
+
+        .rules-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: rgba(0, 98, 204, 0.4);
+        }
+
+        .rules-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .rules-list {
+            list-style: none;
+        }
+
+        .rules-list li {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            color: var(--text-gray);
+            display: flex;
+            gap: 12px;
+            line-height: 1.5;
+        }
+
+        .rules-list li strong {
+            color: var(--text-white);
+        }
+
+        .final-note {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 50px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        footer {
+            background: #090c10;
+            padding: 60px 10%;
+            text-align: center;
+            color: var(--text-gray);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo-area">
+            <img src="logo.png" alt="Elysium Logo" width="32" height="48">
+            <span>LYSIUM NETWORK</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="infuse.html">Infuse</a>
+            <a href="https://elysium-network.gitbook.io/elysium-network">Geopol</a>
+            <a href="https://discord.gg/vjBADSdt3Q">Discord</a>
+            <a href="elysiumstore.html" class="store-highlight">Store</a>
+        </div>
+    </nav>
+
+    <header class="rules-hero">
+        <h1>Server Rules</h1>
+        <p>To keep our SMP fair, fun, and welcoming, all players must follow these rules. Breaking them can lead to warnings, mutes, or bans.</p>
+    </header>
+
+    <div class="container">
+        <div class="rules-grid">
+            
+            <div class="rules-card">
+                <h2>🔹 General Rules</h2>
+                <ul class="rules-list">
+                    <li>❌ No hacking, cheating, or exploits.</li>
+                    <li>❌ One account per player — no alts or punishment evasion.</li>
+                    <li>❌ No NSFW, illegal, or offensive content.</li>
+                    <li>❌ No toxicity, threats, or harassment.</li>
+                    <li>⚠️ Staff decisions are final — appeal respectfully if needed.</li>
+                    <li>❌ No TP traps.</li>
+                    <li>👥 Max team size: 4 players.</li>
+                </ul>
+            </div>
+
+            <div class="rules-card">
+                <h2>⚔️ Combat Rules (PvP)</h2>
+                <ul class="rules-list">
+                    <li>❌ No naked killing (unarmed/unarmored players).</li>
+                    <li>❌ No combat logging or teleporting during fights.</li>
+                    <li>❌ No tipped arrows (slow fall, instant damage).</li>
+                    <li>❌ No tridents, elytras, or flying in PvP.</li>
+                    <li>❌ No spawn-killing or repeated targeting.</li>
+                    <li>✅ Totems are unlimited per fight.</li>
+                    <li>❌ No crystals, bedbombs, or TNT minecarts.</li>
+                    <li>❌ No anchors or CPvP.</li>
+                    <li>📦 Max 16 ender pearls per fight.</li>
+                </ul>
+            </div>
+
+            <div class="rules-card">
+                <h2>🏚️ Raiding & Exploits</h2>
+                <ul class="rules-list">
+                    <li>⚔️ Raiding & griefing are allowed.</li>
+                    <li>❌ No zombie villager claiming unless you cured it.</li>
+                    <li>❌ No nether/end bases — farms only.</li>
+                    <li>❌ No dupers, lag machines, or exploits (including string dupers).</li>
+                    <li>🎥 ReplayMod allowed only for reports.</li>
+                </ul>
+            </div>
+
+            <div class="rules-card">
+                <h2>🧪 Potions & Items</h2>
+                <ul class="rules-list">
+                    <li>❌ Slow falling (potions/arrows) is banned.</li>
+                    <li>🎒 Event/PvP items must stay in your inventory.</li>
+                    <li>❌ No storing event items in ender chests, team ender chests, or stashing them.</li>
+                    <li>🚫 If found stored, the items will be removed and reused in future events.</li>
+                </ul>
+            </div>
+
+            <div class="rules-card">
+                <h2>🔧 Mods & Clients</h2>
+                <ul class="rules-list">
+                    <li>✅ <strong>Allowed:</strong> Optifine, minimap (no entities), ReplayMod (for reports).</li>
+                    <li>❌ <strong>Banned:</strong> Freecam, X-ray, macros, auto-clickers, PvP assists.</li>
+                </ul>
+            </div>
+
+            <div class="rules-card">
+                <h2>🔊 Discord Rules</h2>
+                <ul class="rules-list">
+                    <li>📜 Follow Discord ToS & Guidelines.</li>
+                    <li>❌ No spam, mass pings, impersonation, or off-topic promo.</li>
+                    <li>❌ No advertising without staff permission.</li>
+                    <li>📂 Use channels correctly — memes in memes, serious in serious.</li>
+                </ul>
+            </div>
+
+            <div class="rules-card">
+                <h2>📝 Staff Application Rules</h2>
+                <ul class="rules-list">
+                    <li>❌ Asking a staff member to read your application will result in automatic rejection.</li>
+                    <li>⏳ There is a 3-day wait period for staff applications.</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="final-note">
+            <h3>🚨 Enforcement</h3>
+            <p style="margin: 15px 0; color: var(--text-gray);">
+                Punishments include Warnings, Temp bans, or Permanent bans. <br>
+                <strong>❗ Lying to staff = stricter punishments. Be honest.</strong>
+            </p>
+            <p style="font-weight: bold; color: var(--accent-blue);">
+                Rules are now active. Changes may happen to keep balance. For help, open a ticket or ping staff.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Elysium Network. Not an official Minecraft product. Not affiliated with Mojang or Microsoft.</p>
+    </footer>
+
+</body>
+</html>
