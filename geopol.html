@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysium Network | Wiki Guides</title>
+    <style>
+        :root {
+            --bg-dark: #0d1117;
+            --card-bg: #161b22;
+            --accent-blue: #0062cc;
+            --text-white: #ffffff;
+            --text-gray: #8b949e;
+            --nav-bg: rgba(13, 17, 23, 0.95);
+            --glass: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10%;
+            height: 80px;
+            background: var(--nav-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            box-sizing: border-box;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: bold;
+            font-size: 1.15rem;
+            color: var(--text-white);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a:not(.store-highlight) {
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            transition: color 0.3s ease;
+            padding: 0 5px;
+        }
+
+        .nav-links a:not(.store-highlight):hover {
+            color: var(--accent-blue);
+        }
+
+        .nav-links a:not(.store-highlight)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -6px;
+            left: 0;
+            background-color: var(--accent-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:not(.store-highlight):hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.store-highlight {
+            color: #ffffff;
+            background-color: var(--accent-blue);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 10px 22px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            border: none;
+        }
+
+        .nav-links a.store-highlight:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 98, 204, 0.4);
+        }
+
+        .nav-links a.store-highlight:active {
+            transform: translateY(0);
+        }
+
+        .rules-hero {
+            padding-top: 160px;
+            padding-bottom: 60px;
+            text-align: center;
+            background: linear-gradient(rgba(13, 17, 23, 0.8), rgba(13, 17, 23, 0.95)), url('map.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .rules-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        .rules-hero p {
+            color: var(--text-gray);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .rules-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        box-shadow 0.4s ease, 
+                        border-color 0.4s ease;
+        }
+
+        .rules-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: rgba(0, 98, 204, 0.4);
+        }
+
+        .rules-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .rules-card h3 {
+            font-size: 1.3rem;
+            margin: 20px 0 10px 0;
+            color: var(--text-white);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 5px;
+        }
+
+        .rules-list {
+            list-style: none;
+        }
+
+        .rules-list li {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            color: var(--text-gray);
+            display: flex;
+            gap: 12px;
+            line-height: 1.5;
+        }
+
+        .rules-list li strong {
+            color: var(--text-white);
+        }
+
+        .wiki-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+
+        .wiki-table th, .wiki-table td {
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            text-align: left;
+        }
+
+        .wiki-table th {
+            background-color: rgba(0, 98, 204, 0.1);
+            color: var(--text-white);
+        }
+
+        .wiki-table td {
+            color: var(--text-gray);
+        }
+
+        .code-block {
+            background-color: #0d1117;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #e6edf3;
+            margin: 15px 0;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .info-blockquote {
+            background: rgba(0, 98, 204, 0.1);
+            border-left: 4px solid var(--accent-blue);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            color: var(--text-gray);
+        }
+
+        .info-blockquote strong {
+            color: var(--text-white);
+        }
+
+        .final-note {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 50px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Interactive Scroll Feature Components */
+        .section-hub {
+            text-align: center;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .hub-btn {
+            background-color: var(--accent-blue);
+            color: var(--text-white);
+            border: none;
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 98, 204, 0.3);
+        }
+
+        .hub-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 98, 204, 0.5);
+        }
+
+        .section-dropdown {
+            display: none;
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            width: 280px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            z-index: 500;
+            overflow: hidden;
+            animation: fadeInScale 0.3s ease-out;
+        }
+
+        .section-dropdown.show {
+            display: block;
+        }
+
+        .section-dropdown a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-gray);
+            text-decoration: none;
+            text-align: left;
+            font-size: 0.95rem;
+            transition: background 0.2s, color 0.2s;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .section-dropdown a:last-child {
+            border-bottom: none;
+        }
+
+        .section-dropdown a:hover {
+            background: rgba(0, 98, 204, 0.15);
+            color: var(--text-white);
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: translate(-50%, 10px) scale(0.95); }
+            to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+        }
+
+        footer {
+            background: #090c10;
+            padding: 60px 10%;
+            text-align: center;
+            color: var(--text-gray);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo-area">
+            <img src="logo.png" alt="Elysium Logo" width="32" height="48">
+            <span>LYSIUM NETWORK</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="infuse.html">Infuse</a>
+            <a href="geopol.html">Geopol Wiki</a>
+            <a href="https://discord.gg/vjBADSdt3Q">Discord</a>
+            <a href="elysiumstore.html" class="store-highlight">Store</a>
+        </div>
+    </nav>
+
+    <header class="rules-hero">
+        <h1>Elysium Wiki Guides</h1>
+        <p>Your centralized handbook for systems, mechanics, and strategies across the Elysium Network.</p>
+    </header>
+
+    <div class="container">
+        <div class="rules-grid">
+            
+            <!-- SECTION 1: RAIDS -->
+            <div class="rules-card" id="raids">
+                <h2>⚔️ Server Guide: RAIDS!</h2>
+                <p style="color: var(--text-gray); margin-bottom: 20px;">Welcome to the new era of warfare on the network! We have officially implemented a custom <strong>Dynamic Raid System</strong> integrated directly with KingdomsX. This system replaces unpredictable griefing and offline raiding with structured, balanced, and strategic warfare. If you want to claim dominance or pillage your rivals, you must do it face-to-face. Here is everything you need to know to lead your nation to victory or defend your homeland.</p>
+                
+                <h3>📜 How to Initiate a Raid</h3>
+                <p style="color: var(--text-gray); margin-bottom: 10px;">Only the <strong>King</strong> of a nation has the authority to declare a raid. To start a war declaration, use the following commands:</p>
+                <div class="code-block">
+/raid &lt;nation_name&gt; aggression<br>
+/raid &lt;nation_name&gt; ransack
+                </div>
+
+                <h3>The Golden Rules of Engagement</h3>
+                <ul class="rules-list">
+                    <li><span>1.</span> <strong>The 10% Rule:</strong> You cannot offline-raid. A raid can <em>only</em> be declared if at least <strong>10% of the defending nation's members</strong> are currently online.</li>
+                    <li><span>2.</span> <strong>Peaceful Exemption:</strong> If a nation has chosen a peaceful doctrine, they are entirely immune. <strong>Peaceful nations cannot declare raids, and you cannot declare raids on them.</strong></li>
+                </ul>
+
+                <h3>🛡️ The 15-Minute Preparation Phase</h3>
+                <ul class="rules-list">
+                    <li>🔹 The defending nation will receive a clean, non-intrusive broadcast alert in chat.</li>
+                    <li>🔹 A custom <strong>BossBar</strong> will appear at the top of the screen for all defending members, starting a <strong>15-minute countdown timer</strong>.</li>
+                    <li>🔹 <strong>Use this time wisely!</strong> Gather your allies, log into Discord, grab your gear, and fortify your positions before the countdown hits zero.</li>
+                </ul>
+
+                <h3>🏹 The Two Raid Types (Duration: 1 Hour)</h3>
+                <p style="color: var(--text-gray); margin-bottom: 15px;">Once the 15-minute preparation timer ends, the BossBar will transition into a 1-hour countdown. Depending on what the attacking King chose, the rules of engagement will strictly change:</p>
+                
+                <strong>1. Aggression Raids</strong>
+                <ul class="rules-list" style="margin-bottom: 15px;">
+                    <li>🎯 <strong>The Objective:</strong> Pure territorial combat and military dominance.</li>
+                    <li>✅ <strong>What you CAN do:</strong> Engage in full PvP and kill enemy players anywhere within their own territory.</li>
+                    <li>❌ <strong>What you CANNOT do:</strong> This is strictly a battle of blades. Attackers <strong>cannot</strong> break blocks, open doors, loot chests, or interact with any builds/containers.</li>
+                    <li>⏱️ <strong>Cooldown:</strong> Once finished, the attacking nation faces a <strong>3-day (72-hour)</strong> cooldown before they can declare this raid type again.</li>
+                </ul>
+
+                <strong>2. Ransack Raids</strong>
+                <ul class="rules-list">
+                    <li>🎯 <strong>The Objective:</strong> High-stakes heist and economic theft.</li>
+                    <li>✅ <strong>What you CAN do:</strong> Infiltrate enemy territory to open and loot containers, chests, and storage bins to steal their valuables.</li>
+                    <li>❌ <strong>What you CANNOT do:</strong> This is a robbery, not a massacre. <strong>PvP is completely disabled</strong>, you cannot kill players during a Ransack raid. Additionally, you cannot break blocks or open mechanical builds/doors. You must find your way to the loot naturally.</li>
+                    <li>⏱️ <strong>Cooldown:</strong> Once finished, the attacking nation faces a <strong>3-day (72-hour)</strong> cooldown before they can declare this raid type again.</li>
+                </ul>
+
+                <div class="info-blockquote">
+                    ⚠️ <strong>Important Note:</strong> Attempting to bypass these mechanics or exploiting limitations during the transition phases will be met with immediate administrative action. Guard your vaults, ready your blades, and may the best nation win!
+                </div>
+            </div>
+
+            <!-- SECTION 2: DRONES -->
+            <div class="rules-card" id="drones">
+                <h2>✈️ Drones — Player Guide</h2>
+                <div class="info-blockquote" style="margin-top: 0;">
+                    Launch strike drones at target coordinates, deploy interceptors, and craft upgrades.
+                </div>
+
+                <h3>Getting Started</h3>
+                <p style="color: var(--text-gray); margin-bottom: 10px;">You need two things to strike a target:</p>
+                <ul class="rules-list" style="margin-bottom: 20px;">
+                    <li><span>1.</span> A <strong>drone item</strong> in your hand (craft one or ask an admin for one)</li>
+                    <li><span>2.</span> The <strong>coordinates</strong> of your target (<code>F3</code> shows your XYZ position)</li>
+                </ul>
+
+                <h3>The Four Drone Tiers</h3>
+                <table class="wiki-table">
+                    <thead>
+                        <tr>
+                            <th>Tier</th>
+                            <th>Name</th>
+                            <th>Explosion</th>
+                            <th>Sets Fire</th>
+                            <th>Speed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>I</strong></td>
+                            <td>§7 Tier-I Strike Drone</td>
+                            <td>Small</td>
+                            <td>✗</td>
+                            <td>Slow</td>
+                        </tr>
+                        <tr>
+                            <td><strong>II</strong></td>
+                            <td>§a Tier-II Strike Drone</td>
+                            <td>Medium</td>
+                            <td>✗</td>
+                            <td>Normal</td>
+                        </tr>
+                        <tr>
+                            <td><strong>III</strong></td>
+                            <td>§9 Tier-III Strike Drone</td>
+                            <td>Large</td>
+                            <td>✔</td>
+                            <td>Fast</td>
+                        </tr>
+                        <tr>
+                            <td><strong>IV</strong></td>
+                            <td>§4 Tier-IV Strike Drone</td>
+                            <td>Massive</td>
+                            <td>✔</td>
+                            <td>Fastest</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="color: var(--text-gray); font-size: 0.95rem; margin-bottom: 20px;"><em>Each tier produces a bigger multi-phase explosion effect with rising smoke columns that linger at the impact site.</em></p>
+
+                <h3>How to Launch a Drone</h3>
+                <p style="color: var(--text-gray);"><strong>Step 1 — Hold the drone:</strong> Put the drone item in your <strong>main hand</strong> (your right hand slot).</p>
+                <p style="color: var(--text-gray); margin-top: 10px;"><strong>Step 2 — Pick your target:</strong> Use <strong>F3</strong> to find the XYZ coordinates of where you want it to hit, or ask someone to stand there and read their coords.</p>
+                <p style="color: var(--text-gray); margin-top: 10px;"><strong>Step 3 — Fire:</strong></p>
+                <div class="code-block">
+/dronetarget &lt;x&gt; &lt;y&gt; &lt;z&gt;
+                </div>
+                <p style="color: var(--text-gray);"><strong>Examples:</strong></p>
+                <div class="code-block">
+/dronetarget 100 64 -250<br>
+/dronetarget ~50 ~ ~0
+                </div>
+                <div class="info-blockquote">
+                    💡 <strong>Tip:</strong> You can use `~` for relative coordinates. `~50` means 50 blocks from where <em>you</em> are standing. `~ ~ ~` would hit your own feet — don't do that.
+                </div>
+
+                <h3>Crafting Drones</h3>
+                <p style="color: var(--text-gray);">Open the crafting GUI with:</p>
+                <div class="code-block">
+/dronecraftgui
+                </div>
+                <div class="code-block">
+[ Ingredient 1 ] [ Ingredient 2 ] [ Ingredient 3 ] [ Ingredient 4 ]  →  [ DRONE (click!) ]
+                </div>
+                <p style="color: var(--text-gray); margin-top: 10px;"><strong>To craft:</strong></p>
+                <ul class="rules-list">
+                    <li><span>1.</span> Open <code>/dronecraftgui</code></li>
+                    <li><span>2.</span> Make sure you have the required materials in your inventory</li>
+                    <li><span>3.</span> <strong>Click the drone icon</strong> on the right side of the recipe row</li>
+                    <li><span>4.</span> The materials are consumed and the drone is added to your inventory automatically</li>
+                    <li><span>5.</span> The GUI refreshes instantly so you can craft again</li>
+                </ul>
+                <div class="info-blockquote">
+                    ⚠️ <strong>Inventory full?</strong> The crafted item will drop at your feet.
+                </div>
+
+                <h3>Drone Interceptors</h3>
+                <p style="color: var(--text-gray); margin-bottom: 15px;">An <strong>Interceptor</strong> is a placeable defense turret that automatically destroys any incoming drone that flies within its detection radius.</p>
+                
+                <p style="color: var(--text-gray);"><strong>Getting an interceptor:</strong> Craft one via <code>/dronecraftgui</code> (last row)</p>
+                <p style="color: var(--text-gray); margin-top: 10px;"><strong>Deploying an interceptor:</strong> Hold the item in your main hand and <strong>right-click the top face of a block</strong> where you want to place it.</p>
+                
+                <table class="wiki-table">
+                    <thead>
+                        <tr>
+                            <th>Rule</th>
+                            <th>Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Single use</strong></td>
+                            <td>Each interceptor is destroyed after it shoots down one drone</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Minimum spacing</strong></td>
+                            <td>You cannot place two interceptors within <strong>5 blocks</strong> of each other</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Detection radius</strong></td>
+                            <td>Automatically shoots down drones within range</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="color: var(--text-gray);"><strong>How it looks:</strong> When an interceptor successfully shoots down a drone you'll see a <strong>firework burst + electric spark</strong> effect at the interception point, and a server-wide message announces the intercept.</p>
+
+                <h3>Commands Reference</h3>
+                <table class="wiki-table">
+                    <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>Permission</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>/dronetarget &lt;x&gt; &lt;y&gt; &lt;z&gt;</code></td>
+                            <td>All players</td>
+                            <td>Launch held drone at coordinates</td>
+                        </tr>
+                        <tr>
+                            <td><code>/dronecraftgui</code></td>
+                            <td>All players</td>
+                            <td>Open the crafting recipe GUI</td>
+                        </tr>
+                        <tr>
+                            <td><code>/droneget &lt;1|2|3|4&gt;</code></td>
+                            <td><strong>Admin only</strong></td>
+                            <td>Give yourself a drone by tier</td>
+                        </tr>
+                        <tr>
+                            <td><code>/droneget interceptor</code></td>
+                            <td><strong>Admin only</strong></td>
+                            <td>Give yourself an interceptor</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- DYNAMIC SECTIONS PLACEHOLDERS -->
+            <div class="rules-card" id="skillxp">
+                <h2>📈 SkillXP</h2>
+                <p style="color: var(--text-gray);"><em>Guide content coming soon. Check back later for details!</em></p>
+            </div>
+
+            <div class="rules-card" id="movecraft">
+                <h2>⚓ Movecraft</h2>
+                <p style="color: var(--text-gray);"><em>Guide content coming soon. Check back later for details!</em></p>
+            </div>
+
+            <div class="rules-card" id="seasons">
+                <h2>🍂 Seasons</h2>
+                <p style="color: var(--text-gray);"><em>Guide content coming soon. Check back later for details!</em></p>
+            </div>
+
+            <div class="rules-card" id="factories">
+                <h2>🏭 Factories</h2>
+                <p style="color: var(--text-gray);"><em>Guide content coming soon. Check back later for details!</em></p>
+            </div>
+
+            <div class="rules-card" id="quests">
+                <h2>📜 Quests</h2>
+                <p style="color: var(--text-gray);"><em>Guide content coming soon. Check back later for details!</em></p>
+            </div>
+
+        </div>
+
+        <!-- Interactive Hub Trigger for Section Links -->
+        <div class="section-hub">
+            <div class="section-dropdown" id="hubDropdown">
+                <a href="#raids">⚔️ Dynamic Raids Guide</a>
+                <a href="#drones">✈️ Strike Drones Guide</a>
+                <a href="https://elysium-network.gitbook.io/elysium-network" target="_blank">🏢 Cities Documentation ↗</a>
+                <a href="#skillxp">📈 SkillXP Guide</a>
+                <a href="#movecraft">⚓ Movecraft Guide</a>
+                <a href="#seasons">🍂 Seasons Guide</a>
+                <a href="#factories">🏭 Factories Guide</a>
+                <a href="#quests">📜 Quests Guide</a>
+            </div>
+            <button class="hub-btn" onclick="toggleHubMenu()">Toggle Wiki Navigation</button>
+        </div>
+
+        <div class="final-note">
+            <h3>🚨 Wiki Contributions</h3>
+            <p style="margin: 15px 0; color: var(--text-gray);">
+                Updates happen every week! Join our discord to receive notifications of new guide components.
+            </p>
+            <p style="font-weight: bold; color: var(--accent-blue);">
+                Join our <a href="https://discord.gg/k4ANsDjNfA">Discord Community</a>
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Elysium Network. Not an official Minecraft product. Not affiliated with Mojang or Microsoft.</p>
+    </footer>
+
+    <script>
+        function toggleHubMenu() {
+            var dropdown = document.getElementById("hubDropdown");
+            dropdown.classList.toggle("show");
+        }
+
+        // Close dropdown when clicking links inside it
+        document.querySelectorAll('#hubDropdown a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById("hubDropdown").classList.remove("show");
+            });
+        });
+
+        // Close dropdown when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.hub-btn')) {
+                var dropdowns = document.getElementsByClassName("section-dropdown");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
